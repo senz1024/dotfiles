@@ -30,6 +30,7 @@ PROMPT="
 # RPROMPT="%d"
 
 
+#for ubuntu
 function my-network-reset(){
     sudo /etc/init.d/network-manager stop
     sudo iwconfig wlp3s0 power off
