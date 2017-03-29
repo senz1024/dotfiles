@@ -1,0 +1,9 @@
+keycode 51 = BackSpace
+keycode 22 = backslash bar
+
+keycode 37 = Caps_Lock NoSymbol Caps_Lock
+keycode 66 = Control_L NoSymbol Control_L
+
+clear Lock
+add Control = Control_L
+
