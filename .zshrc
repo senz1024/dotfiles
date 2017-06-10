@@ -46,7 +46,9 @@ TEXINPUTS=$TEXINPUTS:/usr/share/texlive/texmf-dist/tex/latex/
 
 # for programming contest
 function codetest(){
-    if [[ $1 =~ "\.py$" ]]; then
+    if [ $# -ne 2 ] || [ $1 = "-h" ] || [ $1 = "--help" ]; then
+        echo "Usage: codetest source_code test_file"
+    elif [[ $1 =~ "\.py$" ]]; then
         cat $2 | python $1
     elif [[ $1 =~ "\.c$" ]]; then
         gcc $1; cat $2 | ./a.out 
