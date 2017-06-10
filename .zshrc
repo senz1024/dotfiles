@@ -10,6 +10,8 @@ alias adb="/home/senz/Android/Sdk/platform-tools/adb"
 alias v='$(fc -ln 1 | grep "^v." | tail -1 | sed -e "s|~|$HOME|")'
 alias ping8='ping 8.8.8.8'
 alias pyserv='python -m SimpleHTTPServer'
+alias ct='codetest'
+
 
 autoload -U compinit promptinit
 autoload colors
@@ -30,7 +32,6 @@ PROMPT="
 # RPROMPT="%d"
 
 
-#for ubuntu
 function my-network-reset(){
     sudo /etc/init.d/network-manager stop
     sudo iwconfig wlp3s0 power off
@@ -39,4 +40,17 @@ function my-network-reset(){
 
 function mdcat(){
     pandoc $1 | lynx -stdin
+}
+
+TEXINPUTS=$TEXINPUTS:/usr/share/texlive/texmf-dist/tex/latex/
+
+# for programming contest
+function codetest(){
+    if [[ $1 =~ "\.py$" ]]; then
+        cat $2 | python $1
+    elif [[ $1 =~ "\.c$" ]]; then
+        gcc $1; cat $2 | ./a.out 
+    elif [[ $1 =~ "\.cpp$" ]]; then
+        g++ $1; cat $2 | ./a.out 
+    fi
 }
