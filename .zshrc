@@ -7,7 +7,6 @@ alias py=python
 alias ls="ls --color"
 alias gpp=g++
 alias adb="/home/senz/Android/Sdk/platform-tools/adb"
-alias v='$(fc -ln 1 | grep "^v." | tail -1 | sed -e "s|~|$HOME|")'
 alias ping8='ping 8.8.8.8'
 alias pyserv='python -m SimpleHTTPServer'
 alias ct='codetest'
@@ -30,6 +29,14 @@ PROMPT="
 %{${fg[yellow]}%}%~%{${reset_color}%}
 %n[%T]%# "
 # RPROMPT="%d"
+
+zshaddhistory(){
+    local line=${1%%$'\n'}
+    local cmd=${line%% *}
+
+    # if $cmd==v, don't add to history
+    [[ ${cmd} != v ]]
+}
 
 
 function my-network-reset(){
@@ -55,4 +62,10 @@ function codetest(){
     elif [[ $1 =~ "\.cpp$" ]]; then
         g++ $1; cat $2 | ./a.out 
     fi
+}
+
+function v(){
+    cmd=`fc -ln 1 | grep "^v." | tail -1 | sed -e "s|~|$HOME|"`
+    print -S $cmd # add to history
+    eval $cmd
 }
