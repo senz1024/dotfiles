@@ -4,7 +4,8 @@ export SAVEHIST=100000
 
 alias c=clear
 alias py=python
-alias ls="ls --color"
+alias ls="ls --color" # for linux
+#alias ls="ls -G" # for MacOS
 alias gpp=g++
 alias adb="/home/senz/Android/Sdk/platform-tools/adb"
 alias ping8='ping 8.8.8.8'
