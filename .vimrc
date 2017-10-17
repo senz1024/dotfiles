@@ -2,9 +2,11 @@ set number
 set list listchars=tab:>_
 set expandtab
 set autoindent
-set tabstop=4
-set shiftwidth=4
+set smartindent
+set tabstop=2
+set shiftwidth=2
 syntax on
+filetype on
 
 nnoremap <Down> gj
 nnoremap <Up> gk
