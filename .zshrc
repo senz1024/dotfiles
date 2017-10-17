@@ -34,8 +34,8 @@ zshaddhistory(){
     local line=${1%%$'\n'}
     local cmd=${line%% *}
 
-    # if $cmd==v, don't add to history
-    [[ ${cmd} != v ]]
+    # if $cmd==v or ==vv, don't add to history
+    [[ ${cmd} != (v|vv) ]]
 }
 
 
@@ -66,6 +66,12 @@ function codetest(){
 
 function v(){
     cmd=`fc -ln 1 | grep "^v." | tail -1 | sed -e "s|~|$HOME|"`
+    print -S $cmd # add to history
+    eval $cmd
+}
+
+function vv(){
+    cmd=`fc -ln 1 | grep "^v." | tail -2 | head -1 | sed -e "s|~|$HOME|"`
     print -S $cmd # add to history
     eval $cmd
 }
