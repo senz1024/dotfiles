@@ -11,6 +11,7 @@ alias adb="/home/senz/Android/Sdk/platform-tools/adb"
 alias ping8='ping 8.8.8.8'
 alias pyserv='python -m SimpleHTTPServer'
 alias ct='codetest'
+alias gs='git status'
 
 
 autoload -U compinit promptinit
@@ -67,14 +68,16 @@ function codetest(){
 
 function v(){
     # Search for the last cmd that start with 'v'
-    cmd=`fc -ln 1 | grep "^v." | tail -1 | sed -e "s|~|$HOME|"`
+    cmd=`fc -ln 1 | grep "^v." | tail -1`
     print -S $cmd # add to history
+    cmd=`echo $cmd | sed -e "s|~|$HOME|"`
     eval $cmd
 }
 
 function vv(){
     # Search for the second last cmd that start with 'v' except duplication
-    cmd=`fc -ln 1 | grep "^v." | awk '!a[$0]++' | tail -2 | head -1 | sed -e "s|~|$HOME|"`
+    cmd=`fc -ln 1 | grep "^v." | tac | awk '!a[$0]++' | head -2 | tail -1`
     print -S $cmd # add to history
+    cmd=`echo $cmd | sed -e "s|~|$HOME|"`
     eval $cmd
 }
