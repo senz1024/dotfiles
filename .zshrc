@@ -72,7 +72,8 @@ function v(){
 }
 
 function vv(){
-    cmd=`fc -ln 1 | grep "^v." | tail -2 | head -1 | sed -e "s|~|$HOME|"`
+    # Search for the second last cmd that start with 'v' except duplication
+    cmd=`fc -ln 1 | grep "^v." | awk '!a[$0]++' | tail -2 | head -1 | sed -e "s|~|$HOME|"`
     print -S $cmd # add to history
     eval $cmd
 }
