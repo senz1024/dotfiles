@@ -66,6 +66,7 @@ function codetest(){
 }
 
 function v(){
+    # Search for the last cmd that start with 'v'
     cmd=`fc -ln 1 | grep "^v." | tail -1 | sed -e "s|~|$HOME|"`
     print -S $cmd # add to history
     eval $cmd
