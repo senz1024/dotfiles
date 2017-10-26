@@ -69,6 +69,7 @@ function codetest(){
 function v(){
     # Search for the last cmd that start with 'v'
     cmd=`fc -ln 1 | grep "^v." | tail -1`
+    echo $cmd
     print -S $cmd # add to history
     cmd=`echo $cmd | sed -e "s|~|$HOME|"`
     eval $cmd
@@ -77,6 +78,7 @@ function v(){
 function vv(){
     # Search for the second last cmd that start with 'v' except duplication
     cmd=`fc -ln 1 | grep "^v." | tac | awk '!a[$0]++' | head -2 | tail -1`
+    echo $cmd
     print -S $cmd # add to history
     cmd=`echo $cmd | sed -e "s|~|$HOME|"`
     eval $cmd
