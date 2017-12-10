@@ -2,10 +2,20 @@ export HISTFILE=${HOME}/.zsh_history
 export HISTSIZE=1000
 export SAVEHIST=100000
 
+uname=`uname -s`
+if [ $uname = 'Darwin' ]; then
+  OS='mac'
+elif [ "$(expr substr $uname 1 5)" = 'Linux' ]; then
+  OS='linux'
+fi
+
+if [ OS = 'mac' ]; then
+  alias ls="ls -G"
+elif [ OS = 'linux' ]; then
+  alias ls="ls --color"
+fi
 alias c=clear
 alias py=python
-alias ls="ls --color" # for linux
-#alias ls="ls -G" # for MacOS
 alias gpp=g++
 alias adb="/home/senz/Android/Sdk/platform-tools/adb"
 alias ping8='ping 8.8.8.8'
