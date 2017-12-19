@@ -9,9 +9,9 @@ elif [ "$(expr substr $uname 1 5)" = 'Linux' ]; then
   OS='linux'
 fi
 
-if [ OS = 'mac' ]; then
+if [ $OS = 'mac' ]; then
   alias ls="ls -G"
-elif [ OS = 'linux' ]; then
+elif [ $OS = 'linux' ]; then
   alias ls="ls --color"
 fi
 alias c=clear
@@ -87,7 +87,11 @@ function v(){
 
 function vv(){
     # Search for the second last cmd that start with 'v' except duplication
-    cmd=`fc -ln 1 | grep "^v." | tac | awk '!a[$0]++' | head -2 | tail -1`
+    if [ $OS = 'mac' ]; then
+      cmd=`fc -ln 1 | grep "^v." | tail -r | awk '!a[$0]++' | head -2 | tail -1`
+    elif [ $OS = 'linux' ]; then
+      cmd=`fc -ln 1 | grep "^v." | tac | awk '!a[$0]++' | head -2 | tail -1`
+    fi
     echo $cmd
     print -S $cmd # add to history
     cmd=`echo $cmd | sed -e "s|~|$HOME|"`
