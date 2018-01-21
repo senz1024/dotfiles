@@ -1,3 +1,4 @@
+set viminfo='100,<1000,s10,h
 set number
 set list listchars=tab:>_
 set expandtab
