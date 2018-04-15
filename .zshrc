@@ -97,3 +97,5 @@ function vv(){
     cmd=`echo $cmd | sed -e "s|~|$HOME|"`
     eval $cmd
 }
+
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
