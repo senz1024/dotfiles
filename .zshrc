@@ -82,6 +82,7 @@ function v(){
     echo $cmd
     print -S $cmd # add to history
     cmd=`echo $cmd | sed -e "s|~|$HOME|"`
+    sleep 0.2
     eval $cmd
 }
 
@@ -95,7 +96,9 @@ function vv(){
     echo $cmd
     print -S $cmd # add to history
     cmd=`echo $cmd | sed -e "s|~|$HOME|"`
+    sleep 0.2
     eval $cmd
 }
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
