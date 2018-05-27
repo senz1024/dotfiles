@@ -76,6 +76,10 @@ function codetest(){
     fi
 }
 
+function clip(){
+  cat $1 | xsel --clipboard --input
+}
+
 function v(){
     # Search for the last cmd that start with 'v'
     cmd=`fc -ln 1 | grep "^v." | tail -1`
