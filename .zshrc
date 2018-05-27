@@ -5,13 +5,15 @@ export SAVEHIST=100000
 uname=`uname -s`
 if [ $uname = 'Darwin' ]; then
   OS='mac'
+elif [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
+  OS='wsl'
 elif [ "$(expr substr $uname 1 5)" = 'Linux' ]; then
   OS='linux'
 fi
 
 if [ $OS = 'mac' ]; then
   alias ls="ls -G"
-elif [ $OS = 'linux' ]; then
+elif [ $OS = 'linux' ] || [ $OS = 'wsl' ]; then
   alias ls="ls --color"
 fi
 alias c=clear
@@ -77,7 +79,11 @@ function codetest(){
 }
 
 function clip(){
-  cat $1 | xsel --clipboard --input
+  if [ $OS = 'linux' ]; then
+    cat $1 | xsel --clipboard --input
+  elif [ $OS = 'wsl' ]; then
+    cat $1 | clip.exe
+  fi
 }
 
 function v(){
@@ -94,7 +100,7 @@ function vv(){
     # Search for the second last cmd that start with 'v' except duplication
     if [ $OS = 'mac' ]; then
       cmd=`fc -ln 1 | grep "^v." | tail -r | awk '!a[$0]++' | head -2 | tail -1`
-    elif [ $OS = 'linux' ]; then
+    elif [ $OS = 'linux' ] || [ $OS = 'wsl' ]; then
       cmd=`fc -ln 1 | grep "^v." | tac | awk '!a[$0]++' | head -2 | tail -1`
     fi
     echo $cmd
