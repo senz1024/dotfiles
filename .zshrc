@@ -24,6 +24,7 @@ alias ping8='ping 8.8.8.8'
 alias pyserv='python -m SimpleHTTPServer'
 alias ct='codetest'
 alias gs='git status'
+alias aptcheck='sudo apt update; sudo apt list --upgradable'
 
 
 autoload -U compinit promptinit
