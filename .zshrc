@@ -24,7 +24,7 @@ alias ping8='ping 8.8.8.8'
 alias pyserv='python -m SimpleHTTPServer'
 alias ct='codetest'
 alias gs='git status'
-alias aptcheck='sudo apt update; sudo apt list --upgradable'
+alias aptcheck='sudo apt update; apt list --upgradable; date > /tmp/apt_upgradable; apt list --upgradable >> /tmp/apt_upgradable'
 
 
 autoload -U compinit promptinit
@@ -50,7 +50,7 @@ zshaddhistory(){
     local cmd=${line%% *}
 
     # if $cmd==v or ==vv, don't add to history
-    [[ ${cmd} != (v|vv) ]]
+    [[ ${cmd} != (v|vv|p) ]]
 }
 
 
@@ -108,6 +108,15 @@ function vv(){
     print -S $cmd # add to history
     cmd=`echo $cmd | sed -e "s|~|$HOME|"`
     sleep 0.2
+    eval $cmd
+}
+
+function p(){
+    # Search for the last cmd that start with 'p'
+    cmd=`fc -ln 1 | grep "^p." | tail -1`
+    echo $cmd
+    print -S $cmd # add to history
+    cmd=`echo $cmd | sed -e "s|~|$HOME|"`
     eval $cmd
 }
 
