@@ -16,3 +16,8 @@ nnoremap <Up> gk
 au BufWritePost * mkview
 autocmd BufReadPost * loadview
 
+"In file *.py, tabstop=4
+filetype plugin on
+filetype indent on
+autocmd FileType python setlocal sw=4 sts=4 ts=4 et
+
