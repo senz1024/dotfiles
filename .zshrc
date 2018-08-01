@@ -24,6 +24,7 @@ alias ping8='ping 8.8.8.8'
 alias pyserv='python -m SimpleHTTPServer'
 alias ct='codetest'
 alias gs='git status'
+
 alias aptcheck='sudo apt update; apt list --upgradable; date > /tmp/apt_upgradable; apt list --upgradable >> /tmp/apt_upgradable'
 
 
@@ -62,6 +63,10 @@ function my-network-reset(){
 
 function mdcat(){
     pandoc $1 | lynx -stdin
+}
+
+function getline(){
+    head -$2 $1 | tail -1
 }
 
 TEXINPUTS=$TEXINPUTS:/usr/share/texlive/texmf-dist/tex/latex/
