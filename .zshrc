@@ -24,6 +24,7 @@ alias ping8='ping 8.8.8.8'
 alias pyserv='python -m SimpleHTTPServer'
 alias ct='codetest'
 alias gs='git status'
+alias protect='sudo chattr +i'
 
 alias aptcheck='sudo apt update; apt list --upgradable; date > /tmp/apt_upgradable; apt list --upgradable >> /tmp/apt_upgradable'
 
