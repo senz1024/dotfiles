@@ -1,0 +1,3 @@
+PROMPT="
+%{${fg[yellow]}%}%~%{${reset_color}%}
+%n@%{${fg[red]}%}docker%{${reset_color}%} [%T]%# "
