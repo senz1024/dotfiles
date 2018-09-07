@@ -1,3 +1,12 @@
 PROMPT="
 %{${fg[yellow]}%}%~%{${reset_color}%}
 %n@%{${fg[red]}%}docker%{${reset_color}%}[%T]%# "
+
+
+function exit(){
+  read ANS\?"exit? (detach is C-p C-q) [Y/n]"
+  if [ $ANS = "Y" ]; then
+    builtin exit
+  fi
+}
+
