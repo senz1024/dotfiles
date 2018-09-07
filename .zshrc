@@ -26,9 +26,6 @@ alias ct='codetest'
 alias gs='git status'
 alias protect='sudo chattr +i'
 
-alias aptcheck='sudo apt update; apt list --upgradable; date > /tmp/apt_upgradable; apt list --upgradable >> /tmp/apt_upgradable'
-
-
 autoload -U compinit promptinit
 autoload colors
 colors
@@ -56,6 +53,19 @@ zshaddhistory(){
 }
 
 
+function aptcheck(){
+  sudo apt update
+  apt list --upgradable
+  date > /tmp/apt_upgradable
+  apt list --upgradable >> /tmp/apt_upgradable
+  if [ -e /var/run/reboot-required ]; then
+    echo "##########################"
+    echo "### Reboot is required ###"
+    echo "##########################"
+  fi
+}
+
+
 function my-network-reset(){
     sudo /etc/init.d/network-manager stop
     sudo iwconfig wlp3s0 power off
@@ -66,11 +76,10 @@ function mdcat(){
     pandoc $1 | lynx -stdin
 }
 
-function getline(){
+function pickline(){
     head -$2 $1 | tail -1
 }
 
-TEXINPUTS=$TEXINPUTS:/usr/share/texlive/texmf-dist/tex/latex/
 
 # for programming contest
 function codetest(){
@@ -125,6 +134,8 @@ function p(){
     cmd=`echo $cmd | sed -e "s|~|$HOME|"`
     eval $cmd
 }
+
+
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
