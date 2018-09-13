@@ -62,6 +62,7 @@ function aptcheck(){
     echo "##########################"
     echo "### Reboot is required ###"
     echo "##########################"
+    cat /var/run/reboot-required.pkgs
   fi
 }
 
