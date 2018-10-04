@@ -25,6 +25,7 @@ alias pyserv='python -m SimpleHTTPServer'
 alias ct='codetest'
 alias gs='git status'
 alias protect='sudo chattr +i'
+alias datetime='date "+%Y%m%d%H%M%S"'
 
 autoload -U compinit promptinit
 autoload colors
