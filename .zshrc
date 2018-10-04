@@ -58,11 +58,18 @@ function aptcheck(){
   apt list --upgradable
   date > /tmp/apt_upgradable
   apt list --upgradable >> /tmp/apt_upgradable
+  reboot_check
+}
+
+
+function reboot_check(){
   if [ -e /var/run/reboot-required ]; then
     echo "##########################"
     echo "### Reboot is required ###"
     echo "##########################"
     cat /var/run/reboot-required.pkgs
+  else
+    echo "OK"
   fi
 }
 
