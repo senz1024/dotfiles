@@ -18,6 +18,7 @@ elif [ $OS = 'linux' ] || [ $OS = 'wsl' ]; then
 fi
 alias c=clear
 alias py=python
+alias numpy="PYTHONSTARTUP=${HOME}/.startup_numpy.py python"
 alias gpp=g++
 alias adb="/home/senz/Android/Sdk/platform-tools/adb"
 alias ping8='ping 8.8.8.8'
