@@ -28,6 +28,7 @@ alias ct='codetest'
 alias gs='git status'
 alias protect='sudo chattr +i'
 alias datetime='date "+%Y%m%d_%H%M%S"'
+alias aptupg='sudo apt upgrade -y; reboot_check'
 
 autoload -U compinit promptinit
 autoload colors
