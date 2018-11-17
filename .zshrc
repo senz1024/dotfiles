@@ -89,7 +89,16 @@ function mdcat(){
 }
 
 function pickline(){
-    head -$2 $1 | tail -1
+    # Usage: pickline filename s [n]
+    #
+    # Outputs s-th to (s+n)-th lines of filename
+
+    if [ $# -eq 3 ]; then
+        nline=$3
+    else
+        nline=1
+    fi
+    head -$(($2+${nline}-1)) $1 | tail -${nline}
 }
 
 
