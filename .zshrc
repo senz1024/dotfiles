@@ -93,7 +93,7 @@ function pickline(){
     #
     # Outputs s-th to (s+n)-th lines of filename
 
-    if [ $# -eq 3 ]; then
+    if [ $# -gt 2 ]; then
         nline=$3
     else
         nline=1
