@@ -148,8 +148,8 @@ function vv(){
 }
 
 function p(){
-    # Search for the last cmd that start with 'p'
-    cmd=`fc -ln 1 | grep "^p." | tail -1`
+    # Search for the last cmd that start with 'p' and its length is larger than 2
+    cmd=`fc -ln 1 | grep "^p.." | tail -1`
     echo $cmd
     print -S $cmd # add to history
     cmd=`echo $cmd | sed -e "s|~|$HOME|"`
