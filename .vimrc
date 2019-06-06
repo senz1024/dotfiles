@@ -12,6 +12,8 @@ filetype on
 nnoremap <Down> gj
 nnoremap <Up> gk
 
+inoremap # X<C-H>#
+
 "move cursor to last position
 au BufWritePost * mkview
 autocmd BufReadPost * loadview
