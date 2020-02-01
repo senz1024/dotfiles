@@ -28,7 +28,6 @@ alias ct='codetest'
 alias gs='git status'
 alias protect='sudo chattr +i'
 alias datetime='date "+%Y%m%d_%H%M%S"'
-alias aptupg='sudo apt upgrade -y; reboot_check'
 alias grep_hilight='grep --color=always -e ^ -e'
 
 autoload -U compinit promptinit
@@ -70,33 +69,6 @@ zshaddhistory(){
     [[ ${cmd} != (v|vv|p) ]]
 }
 
-
-function aptcheck(){
-  sudo apt update
-  apt list --upgradable
-  date > /tmp/apt_upgradable
-  apt list --upgradable >> /tmp/apt_upgradable
-  reboot_check
-}
-
-
-function reboot_check(){
-  if [ -e /var/run/reboot-required ]; then
-    echo "##########################"
-    echo "### Reboot is required ###"
-    echo "##########################"
-    cat /var/run/reboot-required.pkgs
-  else
-    echo "OK"
-  fi
-}
-
-
-function my-network-reset(){
-    sudo /etc/init.d/network-manager stop
-    sudo iwconfig wlp3s0 power off
-    sudo service network-manager restart
-}
 
 function mdcat(){
     pandoc $1 | lynx -stdin
