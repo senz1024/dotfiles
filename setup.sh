@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cp .vimrc ${HOME}
 echo cp .vimrc ${HOME}
 
@@ -17,4 +19,17 @@ echo cp .startup_numpy.py ${HOME}
 
 cp .tmux.conf ${HOME}
 echo .tmux.conf ${HOME}
+
+if [[ -f /etc/lsb-release ]]; then
+  dist=$(head -1 /etc/lsb-release | rev | cut -c 1-6 | rev)
+  if [ $dist = 'Ubuntu' ] || [ $dist = 'ubuntu' ]; then
+    cat zshrclocal/zshrclocal-ubuntu > ${HOME}/.zshrc.local
+    echo "cat zshrclocal/zshrclocal-ubuntu > ${HOME}/.zshrc.local"
+
+    if [[ -e /usr/share/texlive/texmf-dist/tex/latex/ ]]; then
+      cat zshrclocal/zshrclocal-tex >> ${HOME}/.zshrc.local
+      echo "cat zshrclocal/zshrclocal-tex >> ${HOME}/.zshrc.local"
+    fi
+  fi
+fi
 
