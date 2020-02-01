@@ -29,12 +29,20 @@ alias gs='git status'
 alias protect='sudo chattr +i'
 alias datetime='date "+%Y%m%d_%H%M%S"'
 alias aptupg='sudo apt upgrade -y; reboot_check'
+alias grep_hilight='grep --color=always -e ^ -e'
 
 autoload -U compinit promptinit
 autoload colors
 colors
 compinit
 promptinit
+
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:*' formats "%F{blue}[%b]%f"
+
+PROMPT="%n[%T]%# "
+#RPROMPT="%d"
 
 # precmd(){
 # 	psvar=()
@@ -43,10 +51,16 @@ promptinit
 # BATT='%1v'
 # 
 # PROMPT="%n[%T $BATT]%# "
-PROMPT="
-%{${fg[yellow]}%}%~%{${reset_color}%}
-%n[%T]%# "
-# RPROMPT="%d"
+
+precmd () {
+  print
+
+  local left='%{${fg[yellow]}%}%~%{${reset_color}%}'
+  vcs_info
+  local right='${vcs_info_msg_0_}'
+
+  print -P $left $right
+}
 
 zshaddhistory(){
     local line=${1%%$'\n'}

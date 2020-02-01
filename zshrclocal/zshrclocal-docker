@@ -1,6 +1,4 @@
-PROMPT="
-%{${fg[yellow]}%}%~%{${reset_color}%}
-%n@%{${fg[red]}%}${CONTAINER_NAME}(docker)%{${reset_color}%}[%T]%# "
+PROMPT="%n@%{${fg[red]}%}${CONTAINER_NAME}(docker)%{${reset_color}%}[%T]%# "
 
 
 function exit(){
