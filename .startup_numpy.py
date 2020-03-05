@@ -1,5 +1,11 @@
 import numpy as np
 
 np.a = np.array
-np.arangeshape = lambda x: np.arange(np.prod(x)).reshape(x)
+
+def _arangeshape(*x):
+    if len(x)==1 and isinstance(x[0], list):
+        x = x[0]
+    return np.arange(np.prod(x)).reshape(x)
+
+np.arangeshape = _arangeshape
 
