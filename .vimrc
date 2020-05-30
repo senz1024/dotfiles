@@ -12,6 +12,7 @@ filetype on
 nnoremap <Down> gj
 nnoremap <Up> gk
 
+"retain indent for the comment line
 inoremap # X<C-H>#
 
 "move cursor to last position
