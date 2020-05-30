@@ -17,13 +17,13 @@ elif [ $OS = 'linux' ] || [ $OS = 'wsl' ]; then
   alias ls="ls --color"
 fi
 alias c=clear
-alias py=python
-alias numpy="PYTHONSTARTUP=${HOME}/.startup_numpy.py python"
+alias py=python3
+alias numpy="PYTHONSTARTUP=${HOME}/.startup_numpy.py python3"
 alias np=numpy
 alias gpp=g++
 alias adb="/home/senz/Android/Sdk/platform-tools/adb"
 alias ping8='ping 8.8.8.8'
-alias pyserv='python -m SimpleHTTPServer'
+alias pyserv='python3 -m SimpleHTTPServer'
 alias ct='codetest'
 alias gs='git status'
 alias protect='sudo chattr +i'
@@ -93,7 +93,7 @@ function codetest(){
     if [ $# -ne 2 ] || [ $1 = "-h" ] || [ $1 = "--help" ]; then
         echo "Usage: codetest source_code test_file"
     elif [[ $1 =~ "\.py$" ]]; then
-        cat $2 | python $1
+        cat $2 | python3 $1
     elif [[ $1 =~ "\.c$" ]]; then
         gcc $1; cat $2 | ./a.out 
     elif [[ $1 =~ "\.cpp$" ]]; then
