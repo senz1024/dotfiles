@@ -20,6 +20,9 @@ echo cp .startup_numpy.py ${HOME}
 cp .tmux.conf ${HOME}
 echo .tmux.conf ${HOME}
 
+cp .aspell.conf ${HOME}
+echo .aspell.conf ${HOME}
+
 if [[ -f /etc/lsb-release ]]; then
   dist=$(head -1 /etc/lsb-release | rev | cut -c 1-6 | rev)
   if [ $dist = 'Ubuntu' ] || [ $dist = 'ubuntu' ]; then
