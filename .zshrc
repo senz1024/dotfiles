@@ -16,6 +16,8 @@ if [ $OS = 'mac' ]; then
 elif [ $OS = 'linux' ] || [ $OS = 'wsl' ]; then
   alias ls="ls --color"
 fi
+alias mv="mv -i"
+alias cp="cp -i"
 alias c=clear
 alias py=python3
 alias numpy="PYTHONSTARTUP=${HOME}/.startup_numpy.py python3"
@@ -29,6 +31,8 @@ alias gs='git status'
 alias protect='sudo chattr +i'
 alias datetime='date "+%Y%m%d_%H%M%S"'
 alias grep_hilight='grep --color=always -e ^ -e'
+alias pickclip='(){pickline $@ | clip}'
+alias findword='(){find $1 -type f -print | xargs grep -n $2}'
 
 autoload -U compinit promptinit
 autoload colors
@@ -77,14 +81,35 @@ function mdcat(){
 function pickline(){
     # Usage: pickline filename s [n]
     #
-    # Outputs s-th to (s+n)-th lines of filename
+    # Outputs:
+    #   first of n is '+' or '-':
+    #     s-th to (s+n)-th lines of filename
+    #   else:
+    #     s-th to n-th lines of filename
+    # 
 
     if [ $# -gt 2 ]; then
-        nline=$3
+        if [ ${3:0:1} = + ]; then
+          nline=${3:1}
+          sline=$2
+        elif [ ${3:0:1} = - ]; then
+          nline=${3:1}
+          sline=$(($2-${nline}+1))
+        else
+          if [ $3 -lt $2 ];then
+            echo "Warning: $3 < $2" >&2
+            nline=1
+            sline=$2
+          else
+            nline=$(($3-$2+1))
+            sline=$2
+          fi
+        fi
     else
         nline=1
+        sline=$2
     fi
-    head -$(($2+${nline}-1)) $1 | tail -${nline}
+    head -$((${sline}+${nline}-1)) $1 | tail -${nline}
 }
 
 
@@ -113,7 +138,7 @@ function v(){
     # Search for the last cmd that start with 'v'
     cmd=`fc -ln 1 | grep "^v." | tail -1`
     echo $cmd
-    print -S $cmd # add to history
+    print -Sr $cmd # add to history
     cmd=`echo $cmd | sed -e "s|~|$HOME|"`
     sleep 0.2
     eval $cmd
@@ -127,7 +152,7 @@ function vv(){
       cmd=`fc -ln 1 | grep "^v." | tac | awk '!a[$0]++' | head -2 | tail -1`
     fi
     echo $cmd
-    print -S $cmd # add to history
+    print -Sr $cmd # add to history
     cmd=`echo $cmd | sed -e "s|~|$HOME|"`
     sleep 0.2
     eval $cmd
@@ -137,10 +162,11 @@ function p(){
     # Search for the last cmd that start with 'p' and its length is larger than 2
     cmd=`fc -ln 1 | grep "^p.." | tail -1`
     echo $cmd
-    print -S $cmd # add to history
+    print -Sr $cmd # add to history
     cmd=`echo $cmd | sed -e "s|~|$HOME|"`
     eval $cmd
 }
+
 
 
 
