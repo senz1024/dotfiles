@@ -8,12 +8,14 @@ set tabstop=2
 set shiftwidth=2
 set title
 set titleold=
+set foldcolumn=1
 syntax on
 filetype on
 
 nnoremap <Down> gj
 nnoremap <Up> gk
 
+"retain indent for the comment line
 inoremap # X<C-H>#
 
 "move cursor to last position
