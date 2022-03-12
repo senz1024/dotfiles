@@ -14,14 +14,17 @@ fi
 if [ $OS = 'mac' ]; then
   alias ls="ls -G"
 elif [ $OS = 'linux' ] || [ $OS = 'wsl' ]; then
-  alias ls="ls --color"
+  alias ls="ls --color --group-directories-first"
 fi
 alias mv="mv -i"
 alias cp="cp -i"
+alias rm="rm -i"
 alias c=clear
 alias py=python3
 alias numpy="PYTHONSTARTUP=${HOME}/.startup_numpy.py python3"
 alias np=numpy
+alias pandas="PYTHONSTARTUP=${HOME}/.startup_pandas.py python3"
+alias pd=pandas
 alias gpp=g++
 alias adb="/home/senz/Android/Sdk/platform-tools/adb"
 alias ping8='ping 8.8.8.8'
@@ -33,6 +36,7 @@ alias datetime='date "+%Y%m%d_%H%M%S"'
 alias grep_hilight='grep --color=always -e ^ -e'
 alias pickclip='(){pickline $@ | clip}'
 alias findword='(){find $1 -type f -print | xargs grep -n $2}'
+alias mypy='python3 -m mypy'
 
 autoload -U compinit promptinit
 autoload colors
