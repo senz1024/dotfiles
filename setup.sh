@@ -17,6 +17,9 @@ echo cp .gitconfig ${HOME}
 cp .startup_numpy.py ${HOME}
 echo cp .startup_numpy.py ${HOME}
 
+cp .startup_pandas.py ${HOME}
+echo cp .startup_pandas.py ${HOME}
+
 cp .tmux.conf ${HOME}
 echo .tmux.conf ${HOME}
 
