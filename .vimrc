@@ -9,6 +9,7 @@ set shiftwidth=2
 set title
 set titleold=
 set foldcolumn=1
+autocmd ColorScheme * highlight Visual term=reverse cterm=None ctermbg=242 guibg=DarkGrey
 colorscheme desert
 syntax on
 filetype on
