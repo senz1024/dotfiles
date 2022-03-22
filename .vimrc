@@ -9,6 +9,7 @@ set shiftwidth=2
 set title
 set titleold=
 set foldcolumn=1
+colorscheme desert
 syntax on
 filetype on
 
