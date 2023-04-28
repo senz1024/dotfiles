@@ -35,7 +35,7 @@ alias protect='sudo chattr +i'
 alias datetime='date "+%Y%m%d_%H%M%S"'
 alias grep_hilight='grep --color=always -e ^ -e'
 alias pickclip='(){pickline $@ | clip}'
-alias findword='(){find $1 -type f -print | xargs grep -n $2}'
+alias findword='(){find $1 -type f -print | xargs grep -n $2 | cut -c -256}'
 alias mypy='python3 -m mypy'
 
 autoload -U compinit promptinit
@@ -59,12 +59,19 @@ PROMPT="%n[%T]%# "
 # 
 # PROMPT="%n[%T $BATT]%# "
 
+function stash_num () {
+  git stash list 1>/dev/null 2>&1
+  if [ $? -eq 0 ]; then
+    echo "%F{green}($(git stash list | wc -l))%f"
+  fi
+}
+
 precmd () {
   print
 
   local left='%{${fg[yellow]}%}%~%{${reset_color}%}'
   vcs_info
-  local right='${vcs_info_msg_0_}'
+  local right='${vcs_info_msg_0_}'" $(stash_num)%f"
 
   print -P $left $right
 }
@@ -133,6 +140,14 @@ function codetest(){
 function clip(){
   if [ $OS = 'linux' ]; then
     cat $1 | xsel --clipboard --input
+  elif [ $OS = 'wsl' ]; then
+    cat $1 | clip.exe
+  fi
+}
+
+function teeclip(){
+  if [ $OS = 'linux' ]; then
+    cat $1 | tee >(xsel --clipboard --input)
   elif [ $OS = 'wsl' ]; then
     cat $1 | clip.exe
   fi
