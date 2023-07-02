@@ -153,6 +153,10 @@ function teeclip(){
   fi
 }
 
+function countpyline(){
+  find $1 -name "*.py" -exec wc -l {} + | tail -1
+}
+
 function v(){
     # Search for the last cmd that start with 'v'
     cmd=`fc -ln 1 | grep "^v." | tail -1`
@@ -185,7 +189,6 @@ function p(){
     cmd=`echo $cmd | sed -e "s|~|$HOME|"`
     eval $cmd
 }
-
 
 
 
