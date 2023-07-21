@@ -37,6 +37,8 @@ alias grep_hilight='grep --color=always -e ^ -e'
 alias pickclip='(){pickline $@ | clip}'
 alias findword='(){find $1 -type f -print | xargs grep -n $2 | cut -c -256}'
 alias mypy='python3 -m mypy'
+alias cdtmp='cd $(mktemp -d) && RECENT_TMPDIR=$(pwd)'
+alias flushtmp='rm -rfi $RECENT_TMPDIR'
 
 autoload -U compinit promptinit
 autoload colors
