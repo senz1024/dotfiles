@@ -33,3 +33,5 @@ autocmd FileType python setlocal sw=4 sts=4 ts=4 et
 autocmd BufNewFile,BufRead *.ts set filetype=javascript
 autocmd BufNewFile,BufRead *.tsx set filetype=javascript
 
+"disable beep
+set belloff=all
