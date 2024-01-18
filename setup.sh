@@ -39,3 +39,8 @@ if [[ -f /etc/lsb-release ]]; then
   fi
 fi
 
+if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+  # WSL
+  cat zshrclocal/zshrclocal-wsl >> ${HOME}/.zshrc.local
+  echo "cat zshrclocal/zshrclocal-wsl >> ${HOME}/.zshrc.local"
+fi
