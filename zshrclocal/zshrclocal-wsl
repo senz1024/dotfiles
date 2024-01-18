@@ -1,2 +1,3 @@
+# disable beep
 setopt no_beep
 
