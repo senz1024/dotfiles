@@ -7,13 +7,15 @@ if [ $uname = 'Darwin' ]; then
   OS='mac'
 elif [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
   OS='wsl'
+elif [[ `uname -a` =~ Linux && `uname -a` =~ microsoft ]]; then
+  OS='wsl2'
 elif [ "$(expr substr $uname 1 5)" = 'Linux' ]; then
   OS='linux'
 fi
 
 if [ $OS = 'mac' ]; then
   alias ls="ls -G"
-elif [ $OS = 'linux' ] || [ $OS = 'wsl' ]; then
+elif [ $OS = 'linux' ] || [ $OS = 'wsl' ] || [ $OS = 'wsl2' ]; then
   alias ls="ls --color --group-directories-first"
 fi
 alias mv="mv -i"
@@ -150,7 +152,7 @@ function codetest(){
 function clip(){
   if [ $OS = 'linux' ]; then
     cat $1 | xsel --clipboard --input
-  elif [ $OS = 'wsl' ]; then
+  elif [ $OS = 'wsl' ] || [ $OS = 'wsl2' ]; then
     cat $1 | clip.exe
   fi
 }
@@ -158,7 +160,7 @@ function clip(){
 function teeclip(){
   if [ $OS = 'linux' ]; then
     cat $1 | tee >(xsel --clipboard --input)
-  elif [ $OS = 'wsl' ]; then
+  elif [ $OS = 'wsl' ] || [ $OS = 'wsl2' ]; then
     cat $1 | clip.exe
   fi
 }
@@ -203,4 +205,3 @@ function p(){
 
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
