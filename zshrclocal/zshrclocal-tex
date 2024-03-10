@@ -1,3 +1,5 @@
+# ******************** zshrclocal-tex ********************
+
 TEXINPUTS=$TEXINPUTS:/usr/share/texlive/texmf-dist/tex/latex/
 BSTINPUTS=$BSTINPUTS:/usr/share/texlive/texmf-dist/pbibtex/bst
 

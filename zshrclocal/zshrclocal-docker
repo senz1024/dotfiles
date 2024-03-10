@@ -1,3 +1,5 @@
+# ******************** zshrclocal-docker ********************
+
 PROMPT="%n@%{${fg[red]}%}${CONTAINER_NAME}(docker)%{${reset_color}%}[%T]%# "
 
 

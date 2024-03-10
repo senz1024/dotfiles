@@ -1,3 +1,5 @@
+# ******************** zshrclocal-wsl ********************
+
 # disable beep
 setopt no_beep
 

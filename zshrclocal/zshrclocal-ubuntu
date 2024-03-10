@@ -1,3 +1,5 @@
+# ******************** zshrclocal-ubuntu ********************
+
 alias aptupg='sudo apt upgrade -y; reboot_check'
 
 function aptcheck(){

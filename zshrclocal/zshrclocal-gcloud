@@ -1,3 +1,5 @@
+# ******************** zshrclocal-gcloud ********************
+
 # google cloud sdk
 export PATH=/Users/senz/Library/google-cloud-sdk/bin:$PATH
 
