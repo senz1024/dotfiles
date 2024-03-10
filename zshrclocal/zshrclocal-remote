@@ -1,0 +1,4 @@
+# ******************** zshrclocal-remote ********************
+
+PROMPT="%n@%{${fg[red]}%}${HOST}%{${reset_color}%}[%T]%# "
+
