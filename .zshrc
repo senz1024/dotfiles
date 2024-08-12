@@ -41,6 +41,7 @@ alias findword='(){find $1 -type f -print | xargs grep -n $2 | cut -c -256}'
 alias mypy='python3 -m mypy'
 alias cdtmp='cd $(mktemp -d) && RECENT_TMPDIR=$(pwd)'
 alias flushtmp='echo -n -e "remove directory \x27$RECENT_TMPDIR\x27? (y/N): "; read -q && rm -rf $RECENT_TMPDIR; echo'
+alias activate='(){source $1/bin/activate}'  # for venv
 
 
 autoload -U compinit promptinit
